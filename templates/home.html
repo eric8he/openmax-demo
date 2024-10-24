@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OpenMax CIFAR Demo</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}"/>
+    </head>
+    <body>
+        <h1>OpenMax CIFAR Demo</h1>
+        <p>
+            <span class="bold">Eric He </span> | for the CS109 Challenge
+            <br />
+            Based on <a href="https://arxiv.org/abs/1511.06233">“Towards Open Set Deep Networks” (Bendale, Boult 2015)</a>
+        </p>
+        <br /><br />
+        <table>
+            <tr>
+                <td>
+                    <br /><br />
+                    <h2>Upload File</h2><br />
+                    <form method=post enctype=multipart/form-data>
+                        <label class="custom-file-upload">
+                            <input type="file" name="file"/>
+                        </label><br /><br />
+                        <div class="aligned">
+                            <p>Show OpenMax?&nbsp;&nbsp;</p>
+                            <label class="switch">
+                                <input type="checkbox" name="open" />
+                                <span class="slider round">
+                                    <span class="on">ON</span>
+                                    <span class="off">OFF</span>
+                                </span>
+                            </label>
+                        </div>
+                        <br />
+                        <input class="button right" type="submit" value=Upload />
+                    </form>
+                </td>
+                <td>
+                    {% if vals %}
+                        <p class="nomargin">{{ img.split("/")[-1] }}</p>
+                        <img src="{{img}}" height=350px/>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                {% if vals %}
+                    {% if vals |count ==2 %}
+                        <table>
+                            <tr>
+                                <th>
+                                    <h2>OpenMax Classification</h2>
+                                </th>
+                                <th>
+                                    <h2>Naive Classification</h2>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="itable">
+                                        <tr>
+                                            <th>Classification</th>
+                                            <th>Confidence</th>
+                                        </tr>
+                                        {% for val in vals[0] %}
+                                            <tr>
+                                                <td>{{val[0]}}</td>
+                                                <td>{{"{:.20f}".format(val[1])}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="itable">
+                                        <tr>
+                                            <th>Classification</th>
+                                            <th>Confidence</th>
+                                        </tr>
+                                        {% for val in vals[1] %}
+                                            <tr>
+                                                <td>{{val[0]}}</td>
+                                                <td>{{"{:.20f}".format(val[1])}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    {% else %}
+                        <table>
+                            <tr>
+                                <th>
+                                    <h2>Naive Classification</h2>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="itable">
+                                        <tr>
+                                            <th>Classification</th>
+                                            <th>Confidence</th>
+                                        </tr>
+                                        {% for val in vals[0] %}
+                                            <tr>
+                                                <td>{{val[0]}}</td>
+                                                <td>{{"{:.20f}".format(val[1])}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    {% endif %} 
+                {% endif %}
+            </tr>
+        </table>
+    </body>
+</html>

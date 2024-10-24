@@ -1,0 +1,174 @@
+/* Base Styles */
+body {
+	color: #c5b0bf;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	background-color: #1d0215;
+}
+
+h1, h2 {
+	color: #d8cbd3;
+	font-weight: bold;
+}
+
+a {
+	color: #c5b0bf;
+}
+
+a:hover {
+	color: #873053;
+}
+
+div {
+	margin: 0;
+	padding: 0;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+/* Table Styles */
+table {
+	font-weight: normal;
+	border-collapse: collapse;
+	width: 500px;
+	background-color: #1d0215;
+}
+
+td, th {
+	border: none;
+	text-align: left;
+	padding: 8px;
+}
+
+/* Inner Table (itable) Styles */
+.itable, td, tr {
+	vertical-align: top;
+}
+
+.itable {
+	background-color: #12000d;
+	border-radius: 5px;
+}
+
+.itable tr:nth-child(even) {
+	background-color: #401e33;
+}
+
+/* Form Styles */
+form {
+	text-align: center;
+	margin-right: 10px;
+}
+
+.label.custom-file-upload {
+	display: inline-block;
+	cursor: pointer;
+}
+
+.aligned {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button {
+	color: #c5b0bf;
+	background-color: #542236;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 24px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.button:hover {
+	background-color: #873053;
+}
+
+/* Switch Styles */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #9a7f93;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: #d2bbcc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked + .slider {
+	background-color: #873053;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #873053;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+.on, .off {
+	color: white;
+	background-color: #e0c7c78c;
+	border-radius: 5px;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	padding: 3px;
+	top: 50%;
+	left: 50%;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.on {
+	display: none;
+}
+
+input:checked+ .slider .on {
+	display: block;
+}
+
+input:checked + .slider .off {
+	display: none;
+}
