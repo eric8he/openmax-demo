@@ -4,7 +4,7 @@ import operator
 import pickle
 
 # third party imports
-from flask import Flask, flash, redirect, render_template, request
+from flask import Flask, flash, redirect, request
 from PIL import Image
 import torch
 from torch import nn
@@ -114,7 +114,6 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# get requests to page and process
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -152,11 +151,9 @@ def upload_file():
         processed = ([] if request.form.get('open') == None else [opened]) + [naive]
         print(processed)
 
-        # send data to template
-        return render_template('home.html', vals=processed, img=pth)
+        return {"vals": processed, "img": pth}
     
-    # normal homepage
-    return render_template('home.html')
+    return {"vals": [], "img": ""}
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=FLASK_PORT, debug = True)
