@@ -156,7 +156,7 @@ def upload_file():
         processed = ([] if request.form.get('open') == None else [opened]) + [naive]
         print(processed)
 
-        resp = Response(json.dumps({"vals": processed, "img": pth}))
+        resp = Response(json.dumps({"ok": True, "vals": processed, "img": pth}))
         resp.headers['Access-Control-Allow-Origin'] = '*'
         return resp
     
