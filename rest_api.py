@@ -13,7 +13,7 @@ from torchvision import transforms
 # define constants
 UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-FLASK_PORT = 80
+FLASK_PORT = 8080
 
 CIFAR10_LABELS = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 CLASSES = len(CIFAR10_LABELS)
@@ -34,6 +34,7 @@ with open('cifar10_dists.pickle', 'rb') as handle:
 # create and initialize Flask instance
 app = Flask(__name__, static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = "super secret key"
 
 # function to prepare image for processing
 def preprocess_image(path):
@@ -121,17 +122,20 @@ def upload_file():
         # check if request is valid
         if 'file' not in request.files:
             flash('No file part')
+            print('No file part')
             return redirect(request.url)
         
         # check if file is attached
         file = request.files['file']
         if file.filename == '':
             flash('No selected file')
+            print('No selected file')
             return redirect(request.url)
         
         # check if file is of an allowed filetype 
         if file and not allowed_file(file.filename):
             flash('Unreadable file type (this only supports PNG, JPG/JPEG, and GIF formats)')
+            print('Unreadable file type (this only supports PNG, JPG/JPEG, and GIF formats)')
             return redirect(request.url)
         
         # get file and save in folder
