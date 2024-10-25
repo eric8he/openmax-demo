@@ -9,6 +9,7 @@ from PIL import Image
 import torch
 from torch import nn
 from torchvision import transforms
+import json
 
 # define constants
 UPLOAD_FOLDER = './static/uploads'
@@ -155,11 +156,11 @@ def upload_file():
         processed = ([] if request.form.get('open') == None else [opened]) + [naive]
         print(processed)
 
-        resp = Response({"vals": processed, "img": pth})
+        resp = Response(json.dumps({"vals": processed, "img": pth}))
         resp.headers['Access-Control-Allow-Origin'] = '*'
         return resp
     
-    resp = Response({"vals": "", "img": ""})
+    resp = Response("success")
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
