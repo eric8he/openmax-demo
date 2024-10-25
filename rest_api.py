@@ -155,9 +155,13 @@ def upload_file():
         processed = ([] if request.form.get('open') == None else [opened]) + [naive]
         print(processed)
 
-        return {"vals": processed, "img": pth}
+        resp = Flask.response({"vals": processed, "img": pth})
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
     
-    return {"vals": [], "img": ""}
+    resp = Flask.response({"vals": "", "img": ""})
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=FLASK_PORT, debug = True)
