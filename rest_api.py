@@ -4,7 +4,7 @@ import operator
 import pickle
 
 # third party imports
-from flask import Flask, flash, redirect, request
+from flask import Flask, flash, redirect, request, Response
 from PIL import Image
 import torch
 from torch import nn
@@ -155,11 +155,11 @@ def upload_file():
         processed = ([] if request.form.get('open') == None else [opened]) + [naive]
         print(processed)
 
-        resp = Flask.response({"vals": processed, "img": pth})
+        resp = Response({"vals": processed, "img": pth})
         resp.headers['Access-Control-Allow-Origin'] = '*'
         return resp
     
-    resp = Flask.response({"vals": "", "img": ""})
+    resp = Response({"vals": "", "img": ""})
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
