@@ -6,9 +6,13 @@ Existing implementations are not well-documented and are confusing to read, some
 ## Files included
 
 generate_arrs.py - lays groundwork 
+
 openmax.py - the main event
+
 templates/home.html - the frontend
+
 static/styles/style.css - the frontend frosting
+
 test-images/ - three images used to test in video/slideshow
 
 ## Running the project
