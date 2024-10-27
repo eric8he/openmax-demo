@@ -17,7 +17,7 @@ from tqdm import tqdm, trange
 normalize = transforms.Normalize(mean=[0.507, 0.4865, 0.4409], std=[0.2673, 0.2564, 0.2761])
 dataset = datasets.CIFAR10(root="data", train = True, transform = transforms.Compose([transforms.ToTensor(),normalize]), download = True) 
 dataloader = DataLoader(dataset, batch_size=1024, shuffle=True)
-model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet20", pretrained=True)
+model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet56", pretrained=True)
 
 # array to store activation vectors (AVs)
 avs = [[] for i in range(10)]

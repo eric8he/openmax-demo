@@ -14,7 +14,7 @@ import json
 # define constants
 UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-FLASK_PORT = 8080
+FLASK_PORT = 80
 
 CIFAR10_LABELS = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 CLASSES = len(CIFAR10_LABELS)
@@ -25,7 +25,7 @@ MEAN = [0.485, 0.456, 0.406]
 STD = [0.229, 0.224, 0.225]
 TRANSFORM_NORM = transforms.Compose([transforms.ToTensor(), transforms.Resize(INPUT_SIZE),transforms.CenterCrop(INPUT_SIZE), transforms.Normalize(MEAN, STD)])
 
-model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet20", pretrained=True)
+model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet56", pretrained=True)
 SOFTMAX = nn.Softmax(0)
 
 # load MAVs and models from file
@@ -65,7 +65,7 @@ def get_results_naive(t, label_arr, classes, top_K):
     d = [(output[i], label_arr[i]) for i in range(classes)]
 
     # sort, reverse, clip, and return
-    return [(x[1], x[0]) for x in sorted(d, reverse=True)[:top_K]]
+    return [(x[1], x[0] * 100) for x in sorted(d, reverse=True)[:top_K]]
 
 # processing fucntion to get beautified data for OpenMax
 # this closely follows Algorithm 2 as outlined in the paper
