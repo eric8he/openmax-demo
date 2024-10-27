@@ -14,7 +14,7 @@ import json
 # define constants
 UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-FLASK_PORT = 80
+FLASK_PORT = 443
 
 CIFAR10_LABELS = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 CLASSES = len(CIFAR10_LABELS)
@@ -171,4 +171,4 @@ def options():
     return resp
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=FLASK_PORT, debug = True)
+    app.run(host='0.0.0.0', port=FLASK_PORT, debug = True, ssl_context='adhoc')
