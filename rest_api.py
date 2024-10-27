@@ -25,11 +25,11 @@ MEAN = [0.485, 0.456, 0.406]
 STD = [0.229, 0.224, 0.225]
 TRANSFORM_NORM = transforms.Compose([transforms.ToTensor(), transforms.Resize(INPUT_SIZE),transforms.CenterCrop(INPUT_SIZE), transforms.Normalize(MEAN, STD)])
 
-model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet56", pretrained=True)
+model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet20", pretrained=True)
 SOFTMAX = nn.Softmax(0)
 
 # load MAVs and models from file
-with open('cifar10_dists.pickle', 'rb') as handle:
+with open('cifar10_dists_resnet20.pickle', 'rb') as handle:
     dists = pickle.load(handle)
 
 # create and initialize Flask instance
