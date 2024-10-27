@@ -1,5 +1,7 @@
+pip -V
 python -m venv ./venv
-. ./venv/bin/activate
+source ./venv/bin/activate
+pip -V
 pip install numpy
 pip install Cython
 pip install -r requirements.txt
