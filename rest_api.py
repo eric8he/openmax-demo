@@ -158,17 +158,23 @@ def upload_file():
 
         resp = Response(json.dumps({"ok": True, "vals": processed, "img": pth}))
         resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+        resp.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
         return resp
     
     resp = Response("success")
     resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    resp.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     return resp
 
 @app.route('/', methods=['OPTIONS'])
 def options():
     resp = Response("success")
     resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    resp.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     return resp
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=FLASK_PORT, debug = True)
+    app.run(host='0.0.0.0', port=FLASK_PORT, debug=True)
